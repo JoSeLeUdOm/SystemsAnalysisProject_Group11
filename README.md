@@ -1,5 +1,6 @@
 # Local Volunteer Coordination Platform
 > A digital platform to connect volunteers with academic support projects in local communities of Bogotá, D.C., Colombia.
+---
 
 ## 📋 Project Description
 
@@ -160,6 +161,7 @@ The system is structured in **three tiers** to ensure separation of responsibili
 
 ## 📁 Repository Structure
 
+```
 📦 project
  ┣ 📂 support_material/
  ┃ ┗ 📂 workshop1/
@@ -169,5 +171,6 @@ The system is structured in **three tiers** to ensure separation of responsibili
  ┃ ┗ 📂 workshop_3_management/
  ┣ 📜 LICENSE
  ┗ 📜 README.md
+```
 
 *Academic project — Systems Analysis and Design, 2026-1*
