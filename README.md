@@ -175,13 +175,4 @@ The system is structured in **three tiers** to ensure separation of responsibili
  ┗ 📜 requirements.txt
 ```
 
----
-
-## 📄 Documentation
-
-- [Workshop 1 — System Analysis](docs/workshop_1_systems_analysis_and_design.pdf)
-- [Workshop 2 — System Design](docs/workshop_2_systems_analysis_and_design.pdf)
-
----
-
 *Academic project — Systems Analysis and Design, 2026-1*
