@@ -160,19 +160,14 @@ The system is structured in **three tiers** to ensure separation of responsibili
 
 ## 📁 Repository Structure
 
-```
-📦 volunteer-coordination-platform
- ┣ 📂 src/
- ┃ ┣ 📂 matching/          # Compatibility algorithm C(v,p)
- ┃ ┣ 📂 registration/      # Registration modules (volunteers & institutions)
- ┃ ┣ 📂 scheduling/        # Conflict-free scheduling engine
- ┃ ┣ 📂 notifications/     # Email and SMS notification service
- ┃ ┗ 📂 reporting/         # Report generation and impact indicators
- ┣ 📂 tests/               # Unit and integration tests
- ┣ 📂 docs/                # Documentation (Workshops, diagrams)
- ┣ 📂 data/                # Google Sheets schemas and sample data
- ┣ 📜 README.md
- ┗ 📜 requirements.txt
-```
+📦 project
+ ┣ 📂 support_material/
+ ┃ ┗ 📂 workshop1/
+ ┣ 📂 workshops/
+ ┃ ┣ 📂 workshop_1/
+ ┃ ┣ 📂 workshop_2/
+ ┃ ┗ 📂 workshop_3_management/
+ ┣ 📜 LICENSE
+ ┗ 📜 README.md
 
 *Academic project — Systems Analysis and Design, 2026-1*
