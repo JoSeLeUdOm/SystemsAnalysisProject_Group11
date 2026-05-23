@@ -99,24 +99,116 @@ The system is structured in **three tiers** to ensure separation of responsibili
 ## 🗺️ Implementation Plan
 
 ### Phase 1 — System Foundations
-- [ ] Set up the GitHub repository
-- [ ] Implement volunteer and institution registration modules with basic profile management
-- [ ] Deploy the Google Sheets schema as a temporary database
+- [x] Set up the GitHub repository
+- [x] Implement volunteer and institution registration modules with basic profile management
+- [x] Deploy the Google Sheets schema as a temporary database
 
 ### Phase 2 — Matching Engine
-- [ ] Develop and run unit tests on the compatibility scoring algorithm
-- [ ] Integrate the algorithm with the volunteer and project databases
-- [ ] Expose the matching endpoint with results ranked by compatibility score
+- [x] Develop and run unit tests on the compatibility scoring algorithm
+- [x] Integrate the algorithm with the volunteer and project databases
+- [x] Expose the matching endpoint with results ranked by compatibility score
 
 ### Phase 3 — Scheduling and Notifications
-- [ ] Build a conflict-free scheduling engine
-- [ ] Implement the session confirmation workflow
-- [ ] Integrate an email and SMS notification service for assignments, reminders, and cancellations
+- [x] Build a conflict-free scheduling engine
+- [x] Implement the session confirmation workflow
+- [x] Integrate an email and SMS notification service for assignments, reminders, and cancellations
 
-### Phase 4 — Impact Monitoring and Reporting
-- [ ] Develop session registration forms for volunteers and organizations
-- [ ] Create impact metrics (attendance rate, % academic improvement, volunteer hours)
-- [ ] Generate periodic reports
+### Phase 4 — Simulation & Validation
+- [x] Develop discrete-event simulation of the matching pipeline (3 scenarios)
+- [x] Develop cellular automata model of volunteer engagement dynamics
+- [x] Validate design decisions against W1/W2/W3 benchmarks
+- [x] Analyze emergent behaviours, chaos sensitivity, and performance bottlenecks
+
+---
+
+## 🔬 Workshop 4 — System Simulation & Validation
+
+This workshop translates the architecture designed in Workshops 1–3 into two complementary computational simulations. Both models are calibrated with primary data from Workshop 1 and validate the design decisions from Workshop 2.
+
+### Simulation 1 — Discrete-Event Matching Pipeline (`simulation_1_discrete_event.py`)
+
+Models the volunteer–project assignment pipeline as a sequence of discrete events over a 12-week horizon.
+
+**Model parameters (calibrated from W1 survey data)**
+
+| Parameter | Value | Source |
+|---|---|---|
+| Low-availability volunteer ratio | 54% | W1 Survey Q5 |
+| Engineering/Math volunteer ratio | 40% | W1 Survey Q2 |
+| Pedagogy volunteer ratio | 22% | W1 Survey Q2 |
+| Session cancellation risk | 15% | W3 Risk RO03 |
+| Target matching latency | 45 ms (σ = 5 ms) | W2 NFR |
+| Simulation horizon | 12 weeks | W3 Gantt |
+| Algorithm weights | w1=0.40, w2=0.30, w3=0.15, w4=0.15 | W2 Equation 1 |
+
+**Scenarios tested**
+
+| Scenario | Volunteers | Projects |
+|---|---|---|
+| Baseline | 50 | 20 |
+| Optimistic | 80 | 20 |
+| Stress test | 25 | 20 |
+
+**Outputs generated**
+
+- `figura1_escenarios.png` — Bar chart comparing coverage, mean C(v,p), and latency across the three scenarios.
+- `figura2_dinamica_semanal.png` — Time-series plots of weekly coverage, compatibility, volunteer pool fluctuation, and score distributions over 12 weeks.
+- `figura3_analisis_caos.png` — Chaos/sensitivity analysis: coverage variance vs. volunteer pool size and volunteer churn perturbation effects.
+
+**Key validation results**
+
+| KPI | Target | Baseline | Optimistic | Stress |
+|---|---|---|---|---|
+| Coverage | ≥ 70% | ✓ Validated | ✓ Validated | Risk zone |
+| Mean C(v,p) | > 0.80 | ✓ Validated | ✓ Validated | ✓ Validated |
+| Matching latency | < 60 s | ✓ Validated | ✓ Validated | ✓ Validated |
+
+---
+
+### Simulation 2 — Cellular Automata Engagement Model (`simulation_2_cellular_automata.py`)
+
+Models the spread and lifecycle of volunteer engagement across a 30×30 grid using Moore-neighbourhood rules over a 20-week horizon.
+
+**Volunteer lifecycle states**
+
+| State | Code | Description |
+|---|---|---|
+| Inactive | 0 | Not yet reached by the platform |
+| Aware | 1 | Has heard about the platform |
+| Engaged | 2 | Regularly participates |
+| Active Tutor | 3 | Actively tutoring |
+| Burned Out | 4 | Temporarily disengaged |
+
+**Transition rules (W2 design equations)**
+
+| Transition | Probability | Condition |
+|---|---|---|
+| Inactive → Aware | P = 0.25 | ≥ 2 active/engaged neighbours (Eq. 2) |
+| Aware → Engaged | P = 0.45 / 0.10 | With / without platform active (Eq. 3) |
+| Engaged → Active | P = 0.60 | Standard activation |
+| Active → Burned Out | P = 0.08 + 0.05 × n_burnout_neighbours | Contagion effect (Eq. 4) |
+| Burned Out → Inactive | P = 0.30 | Recovery/restart |
+| Active → Inactive | P = 0.02 | Natural churn |
+
+**Scenarios tested**
+
+| Scenario | Description |
+|---|---|
+| Platform Active | Recruitment boost of 17.5% per step; Aware→Engaged P = 0.45 |
+| Platform Inactive | No recruitment boost; Aware→Engaged P = 0.10 |
+| High Burnout | Burnout contagion amplified to explore system fragility |
+
+**Outputs generated**
+
+- `figura4_mapa_ca.png` — Grid snapshots at weeks 1, 5, 10, 15, 20 showing spatial spread of engagement.
+- `figura5_dinamica_poblacional.png` — Population share of each state over 20 weeks per scenario.
+- `figura6_sensibilidad_ca.png` — Sensitivity analysis: final active-tutor ratio vs. initial active ratio and platform recruitment rate.
+
+**Key emergent findings**
+
+- Burnout contagion is non-linear: crossing ~12% burned-out neighbours triggers cascading disengagement not predicted by linear models.
+- Platform recruitment converts the Aware population 4.5× faster than organic spread alone, validating the platform investment decision from W2.
+- The 8% initial active seed (W1 baseline) is sufficient for the platform-active scenario to reach a self-sustaining engaged population within 8 weeks.
 
 ---
 
@@ -153,7 +245,9 @@ The system is structured in **three tiers** to ensure separation of responsibili
 
 | Technology | Purpose |
 |---|---|
-| Python | Backend and matching algorithm logic |
+| Python | Backend, matching algorithm, and simulation logic |
+| NumPy | Numerical computation and random number generation for simulations |
+| Matplotlib | Simulation output visualizations (Figures 1–6) |
 | Google Sheets API | Temporary database (initial phase) |
 | Google Forms | Survey data collection |
 
@@ -168,9 +262,44 @@ The system is structured in **three tiers** to ensure separation of responsibili
  ┣ 📂 workshops/
  ┃ ┣ 📂 workshop_1/
  ┃ ┣ 📂 workshop_2/
- ┃ ┗ 📂 workshop_3_management/
+ ┃ ┣ 📂 workshop_3_management/
+ ┃ ┗ 📂 workshop_4_simulation/
+ ┃   ┣ 📂 code/
+ ┃   ┃ ┣ 📜 simulation_1_discrete_event.py
+ ┃   ┃ ┗ 📜 simulation_2_cellular_automata.py
+ ┃   ┣ 📂 outputs/
+ ┃   ┃ ┣ 🖼️ figura1_escenarios.png
+ ┃   ┃ ┣ 🖼️ figura2_dinamica_semanal.png
+ ┃   ┃ ┣ 🖼️ figura3_analisis_caos.png
+ ┃   ┃ ┣ 🖼️ figura4_mapa_ca.png
+ ┃   ┃ ┣ 🖼️ figura5_dinamica_poblacional.png
+ ┃   ┃ ┗ 🖼️ figura6_sensibilidad_ca.png
+ ┃   ┗ 📜 README_W4.md
  ┣ 📜 LICENSE
  ┗ 📜 README.md
 ```
+
+### Running the Simulations
+
+**Requirements**
+```bash
+pip install numpy matplotlib
+```
+
+**Simulation 1 — Discrete-Event Matching Pipeline**
+```bash
+python workshops/workshop_4_simulation/code/simulation_1_discrete_event.py
+```
+Generates `figura1_escenarios.png`, `figura2_dinamica_semanal.png`, and `figura3_analisis_caos.png` in the current directory.
+
+**Simulation 2 — Cellular Automata Engagement Model**
+```bash
+python workshops/workshop_4_simulation/code/simulation_2_cellular_automata.py
+```
+Generates `figura4_mapa_ca.png`, `figura5_dinamica_poblacional.png`, and `figura6_sensibilidad_ca.png` in the current directory.
+
+Both scripts use `SEED = 42` for full reproducibility. No external data files are required; all parameters are embedded in each script.
+
+---
 
 *Academic project — Systems Analysis and Design, 2026-1*
