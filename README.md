@@ -271,13 +271,13 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
  ┃   ┃ ┣ 📜 simulation_1_discrete_event.py
  ┃   ┃ ┗ 📜 simulation_2_cellular_automata.py
  ┃   ┣ 📂 figures/
- ┃   ┃ ┣ 🖼️ figura1_escenarios.png
- ┃   ┃ ┣ 🖼️ figura2_dinamica_semanal.png
- ┃   ┃ ┣ 🖼️ figura3_analisis_caos.png
- ┃   ┃ ┣ 🖼️ figura4_mapa_ca.png
- ┃   ┃ ┣ 🖼️ figura5_dinamica_poblacional.png
- ┃   ┃ ┗ 🖼️ figura6_sensibilidad_ca.png
- ┃   ┗ 📜 README_W4.md
+ ┃    ┣ 🖼️ figura1_escenarios.png
+ ┃    ┣ 🖼️ figura2_dinamica_semanal.png
+ ┃    ┣ 🖼️ figura3_analisis_caos.png
+ ┃    ┣ 🖼️ figura4_mapa_ca.png
+ ┃    ┣ 🖼️ figura5_dinamica_poblacional.png
+ ┃    ┗ 🖼️ figura6_sensibilidad_ca.png
+ ┃ 
  ┣ 📜 LICENSE
  ┗ 📜 README.md
 ```
