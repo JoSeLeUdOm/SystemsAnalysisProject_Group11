@@ -127,7 +127,7 @@ This workshop translates the architecture designed in Workshops 1–3 into two c
 
 ### Simulation 1 — Discrete-Event Matching Pipeline (`simulation_1_discrete_event.py`)
 
-Models the volunteer–project assignment pipeline as a sequence of discrete events over a 12-week horizon.
+Models the volunteer–project assignment pipeline as a sequence of discrete events over a 12-week horizon. *(435 lines, documented with inline comments)*
 
 **Model parameters (calibrated from W1 survey data)**
 
@@ -149,7 +149,7 @@ Models the volunteer–project assignment pipeline as a sequence of discrete eve
 | Optimistic | 80 | 20 |
 | Stress test | 25 | 20 |
 
-**Outputs generated**
+**Outputs generated** *(saved to `figures/`)*
 
 - `figura1_escenarios.png` — Bar chart comparing coverage, mean C(v,p), and latency across the three scenarios.
 - `figura2_dinamica_semanal.png` — Time-series plots of weekly coverage, compatibility, volunteer pool fluctuation, and score distributions over 12 weeks.
@@ -167,17 +167,17 @@ Models the volunteer–project assignment pipeline as a sequence of discrete eve
 
 ### Simulation 2 — Cellular Automata Engagement Model (`simulation_2_cellular_automata.py`)
 
-Models the spread and lifecycle of volunteer engagement across a 30×30 grid using Moore-neighbourhood rules over a 20-week horizon.
+Models the spread and lifecycle of volunteer engagement across a 30×30 grid using Moore-neighbourhood rules over a 20-week horizon. *(380 lines, with state visualization and chaos analysis)*
 
 **Volunteer lifecycle states**
 
 | State | Code | Description |
 |---|---|---|
-| Inactive | 0 | Not yet reached by the platform |
+| Inactive | 0 | Not yet reached by the platform; entry point after recovery/churn |
 | Aware | 1 | Has heard about the platform |
 | Engaged | 2 | Regularly participates |
 | Active Tutor | 3 | Actively tutoring |
-| Burned Out | 4 | Temporarily disengaged |
+| Burned Out | 4 | Disengaged; transitions back to Inactive via recovery (P = 0.30) |
 
 **Transition rules (W2 design equations)**
 
@@ -198,17 +198,18 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 | Platform Inactive | No recruitment boost; Aware→Engaged P = 0.10 |
 | High Burnout | Burnout contagion amplified to explore system fragility |
 
-**Outputs generated**
+**Outputs generated** *(saved to `figures/`)*
 
-- `figura4_mapa_ca.png` — Grid snapshots at weeks 1, 5, 10, 15, 20 showing spatial spread of engagement.
+- `figura4_mapa_ca.png` — Grid snapshots at weeks 0, 4, 8, 12, and 20 showing spatial spread of engagement (platform ON vs. OFF).
 - `figura5_dinamica_poblacional.png` — Population share of each state over 20 weeks per scenario.
 - `figura6_sensibilidad_ca.png` — Sensitivity analysis: final active-tutor ratio vs. initial active ratio and platform recruitment rate.
 
 **Key emergent findings**
 
-- Burnout contagion is non-linear: crossing ~12% burned-out neighbours triggers cascading disengagement not predicted by linear models.
-- Platform recruitment converts the Aware population 4.5× faster than organic spread alone, validating the platform investment decision from W2.
-- The 8% initial active seed (W1 baseline) is sufficient for the platform-active scenario to reach a self-sustaining engaged population within 8 weeks.
+- **Positive emergence — Network Amplification:** The platform produces a +18% relative increase in engagement (24.4% vs. 20.7% total engagement rate by week 20), emerging from compounded local probability boosts rather than any single designed rule.
+- **Negative emergence — Burnout Contagion:** Burnout propagates through social influence (P = 0.08 + 0.05 × n_burnout_neighbours). Spatially clustered burnout can trigger cascading volunteer withdrawal — a risk not identified in W1–W3 and added as a novel finding.
+- **Critical mass tipping point:** Volunteer engagement accelerates non-linearly once ~15% of any neighbourhood reaches the Active state; an 8% initial active seed is sufficient for the platform-active scenario to reach self-sustaining growth within 8 weeks.
+- **Stable attractor:** Despite sensitive dependence on initial conditions in weeks 1–8, all runs converge to a stable attractor region of 120–180 active tutors and 50–80 burned-out volunteers, confirming macro-level predictability.
 
 ---
 
@@ -220,6 +221,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 | Scheduling conflicts | Workshop 1 - Sec. 3.2 | Conflict detection before session confirmation |
 | Low connectivity in communities | Workshop 1 - Sec. 2.5 | App with session recording in offline mode |
 | Changes in student demand | Workshop 1 - Sec. 3.4 | Weekly/monthly reports during demand peaks |
+| **Burnout contagion (RO05)** | **Workshop 4 — CA findings** | **Session load monitoring; cooldown alerts at ≥ 3 sessions/week** |
 
 ---
 
@@ -248,6 +250,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 | Python | Backend, matching algorithm, and simulation logic |
 | NumPy | Numerical computation and random number generation for simulations |
 | Matplotlib | Simulation output visualizations (Figures 1–6) |
+| SciPy | Statistical analysis used in simulation sensitivity and chaos analysis |
 | Google Sheets API | Temporary database (initial phase) |
 | Google Forms | Survey data collection |
 
@@ -267,7 +270,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
  ┃   ┣ 📂 code/
  ┃   ┃ ┣ 📜 simulation_1_discrete_event.py
  ┃   ┃ ┗ 📜 simulation_2_cellular_automata.py
- ┃   ┣ 📂 outputs/
+ ┃   ┣ 📂 figures/
  ┃   ┃ ┣ 🖼️ figura1_escenarios.png
  ┃   ┃ ┣ 🖼️ figura2_dinamica_semanal.png
  ┃   ┃ ┣ 🖼️ figura3_analisis_caos.png
@@ -283,20 +286,26 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 
 **Requirements**
 ```bash
-pip install numpy matplotlib
+pip install numpy matplotlib scipy
+```
+
+**Clone the repository**
+```bash
+git clone https://github.com/JoSeLeUdOm/SystemsAnalysisProject_Group11.git
+cd SystemsAnalysisProject_Group11/workshops/workshop_4_simulation
 ```
 
 **Simulation 1 — Discrete-Event Matching Pipeline**
 ```bash
-python workshops/workshop_4_simulation/code/simulation_1_discrete_event.py
+python code/simulation_1_discrete_event.py
 ```
-Generates `figura1_escenarios.png`, `figura2_dinamica_semanal.png`, and `figura3_analisis_caos.png` in the current directory.
+Generates `figura1_escenarios.png`, `figura2_dinamica_semanal.png`, and `figura3_analisis_caos.png` in `figures/`.
 
 **Simulation 2 — Cellular Automata Engagement Model**
 ```bash
-python workshops/workshop_4_simulation/code/simulation_2_cellular_automata.py
+python code/simulation_2_cellular_automata.py
 ```
-Generates `figura4_mapa_ca.png`, `figura5_dinamica_poblacional.png`, and `figura6_sensibilidad_ca.png` in the current directory.
+Generates `figura4_mapa_ca.png`, `figura5_dinamica_poblacional.png`, and `figura6_sensibilidad_ca.png` in `figures/`.
 
 Both scripts use `SEED = 42` for full reproducibility. No external data files are required; all parameters are embedded in each script.
 
