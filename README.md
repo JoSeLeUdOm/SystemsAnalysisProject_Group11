@@ -159,7 +159,7 @@ Models the volunteer–project assignment pipeline as a sequence of discrete eve
 
 | KPI | Target | Baseline | Optimistic | Stress |
 |---|---|---|---|---|
-| Coverage | ≥ 70% | ✓ Validated | ✓ Validated | Risk zone |
+| Coverage | ≥ 70% | ✓ Validated | ✓ Validated | ✓ Validated |
 | Mean C(v,p) | > 0.80 | ✓ Validated | ✓ Validated | ✓ Validated |
 | Matching latency | < 60 s | ✓ Validated | ✓ Validated | ✓ Validated |
 
@@ -209,7 +209,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 - **Positive emergence — Network Amplification:** The platform produces a +18% relative increase in engagement (24.4% vs. 20.7% total engagement rate by week 20), emerging from compounded local probability boosts rather than any single designed rule.
 - **Negative emergence — Burnout Contagion:** Burnout propagates through social influence (P = 0.08 + 0.05 × n_burnout_neighbours). Spatially clustered burnout can trigger cascading volunteer withdrawal — a risk not identified in W1–W3 and added as a novel finding.
 - **Critical mass tipping point:** Volunteer engagement accelerates non-linearly once ~15% of any neighbourhood reaches the Active state; an 8% initial active seed is sufficient for the platform-active scenario to reach self-sustaining growth within 8 weeks.
-- **Stable attractor:** Despite sensitive dependence on initial conditions in weeks 1–8, all runs converge to a stable attractor region of 120–180 active tutors and 50–80 burned-out volunteers, confirming macro-level predictability.
+- **Stable attractor:** Despite sensitive dependence on initial conditions in weeks 1–8, all runs converge to a stable attractor region of 140–180 active tutors and 55–75 burned-out volunteers, confirming macro-level predictability.
 
 ---
 
