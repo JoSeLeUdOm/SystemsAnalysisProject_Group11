@@ -2,7 +2,7 @@
 > A digital platform to connect volunteers with academic support projects in local communities of Bogotá, D.C., Colombia.
 ---
 
-## 📋 Project Description
+## Project Description
 
 This platform optimizes the assignment of volunteers to tutoring and educational support projects aimed at children and adolescents in vulnerable communities. Through a weighted compatibility algorithm, the system connects the supply of volunteer talent with the demand for academic support, transforming a manual and disorganized process into an efficient, traceable digital system.
 
@@ -22,7 +22,7 @@ This platform optimizes the assignment of volunteers to tutoring and educational
 
 ---
 
-## 🎯 System Objectives
+## System Objectives
 
 - **Reduce assignment times** between volunteers and educational institutions
 - **Improve compatibility** between volunteer skills and project needs
@@ -32,7 +32,7 @@ This platform optimizes the assignment of volunteers to tutoring and educational
 
 ---
 
-## ⚙️ Main Features
+## Main Features
 
 ### Functional Requirements
 
@@ -49,7 +49,7 @@ This platform optimizes the assignment of volunteers to tutoring and educational
 
 ---
 
-## 🧠 Compatibility Algorithm
+## Compatibility Algorithm
 
 The core of the system is an algorithm that calculates a composite compatibility score `C(v, p)` for each volunteer–project pair:
 
@@ -66,7 +66,7 @@ C(v, p) = w1·Skill(v,p) + w2·Schedule(v,p) + w3·Location(v,p) + w4·Experienc
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 The system is structured in **three tiers** to ensure separation of responsibilities, independent scalability, and modular maintenance:
 
@@ -96,7 +96,7 @@ The system is structured in **three tiers** to ensure separation of responsibili
 
 ---
 
-## 🗺️ Implementation Plan
+## Implementation Plan
 
 ### Phase 1 — System Foundations
 - [x] Set up the GitHub repository
@@ -121,7 +121,7 @@ The system is structured in **three tiers** to ensure separation of responsibili
 
 ---
 
-## 🔬 Workshop 4 — System Simulation & Validation
+## Workshop 4 — System Simulation & Validation
 
 This workshop translates the architecture designed in Workshops 1–3 into two complementary computational simulations. Both models are calibrated with primary data from Workshop 1 and validate the design decisions from Workshop 2.
 
@@ -213,7 +213,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 
 ---
 
-## 🛡️ Risk Management
+## Risk Management
 
 | Sensitivity Factor | Reference | Mitigation Mechanism |
 |---|---|---|
@@ -225,7 +225,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Target |
 |---|---|
@@ -243,7 +243,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 
 ---
 
-## 📦 Technologies Used
+## Technologies Used
 
 | Technology | Purpose |
 |---|---|
@@ -256,35 +256,35 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
-📦 project
- ┣ 📂 final_delivery/
- ┃ ┣ 📄 paper.pdf
- ┃ ┣ 📄 poster.pdf
- ┃ ┣ 📄 presentation.pdf
- ┃ ┗ 📄 report.pdf
- ┣ 📂 support_material/
- ┃ ┗ 📂 workshop1/
- ┣ 📂 workshops/
- ┃ ┣ 📂 workshop_1/
- ┃ ┣ 📂 workshop_2/
- ┃ ┣ 📂 workshop_3_management/
- ┃ ┗ 📂 workshop_4_simulation/
- ┃   ┣ 📂 code/
- ┃   ┃ ┣ 📜 simulation_1_discrete_event.py
- ┃   ┃ ┗ 📜 simulation_2_cellular_automata.py
- ┃   ┣ 📂 figures/
- ┃    ┣ 🖼️ figura1_escenarios.png
- ┃    ┣ 🖼️ figura2_dinamica_semanal.png
- ┃    ┣ 🖼️ figura3_analisis_caos.png
- ┃    ┣ 🖼️ figura4_mapa_ca.png
- ┃    ┣ 🖼️ figura5_dinamica_poblacional.png
- ┃    ┗ 🖼️ figura6_sensibilidad_ca.png
+ project
+ ┣ final_delivery/
+ ┃ ┣ paper.pdf
+ ┃ ┣ poster.pdf
+ ┃ ┣ presentation.pdf
+ ┃ ┗ report.pdf
+ ┣ support_material/
+ ┃ ┗ workshop1/
+ ┣ workshops/
+ ┃ ┣ workshop_1/
+ ┃ ┣ workshop_2/
+ ┃ ┣ workshop_3_management/
+ ┃ ┗ workshop_4_simulation/
+ ┃   ┣ code/
+ ┃   ┃ ┣ simulation_1_discrete_event.py
+ ┃   ┃ ┗ simulation_2_cellular_automata.py
+ ┃   ┣ figures/
+ ┃    ┣ figura1_escenarios.png
+ ┃    ┣ figura2_dinamica_semanal.png
+ ┃    ┣ figura3_analisis_caos.png
+ ┃    ┣ figura4_mapa_ca.png
+ ┃    ┣ figura5_dinamica_poblacional.png
+ ┃    ┗ figura6_sensibilidad_ca.png
  ┃ 
- ┣ 📜 LICENSE
- ┗ 📜 README.md
+ ┣ LICENSE
+ ┗ README.md
 ```
 
 ### Running the Simulations
