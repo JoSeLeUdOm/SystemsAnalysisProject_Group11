@@ -260,6 +260,11 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 
 ```
 📦 project
+ ┣ 📂 final_delivery/
+ ┃ ┣ 📄 paper.pdf
+ ┃ ┣ 📄 poster.pdf
+ ┃ ┣ 📄 presentation.pdf
+ ┃ ┗ 📄 report.pdf
  ┣ 📂 support_material/
  ┃ ┗ 📂 workshop1/
  ┣ 📂 workshops/
