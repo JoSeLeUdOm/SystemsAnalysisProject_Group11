@@ -262,11 +262,12 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 project/
 ┣ code/
 ┣ ┣ cellular_automata.py                     
-┣ final_delivery/            
+┣ final/            
 ┃ ┣ paper.pdf
 ┃ ┣ poster.pdf
 ┃ ┣ presentation.pdf
 ┃ ┗ report.pdf
+┃ ┗cellular_automata.py
 ┣ support_material/
 ┃ ┗ workshop1/
 ┣ workshops/
