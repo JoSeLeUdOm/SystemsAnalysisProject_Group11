@@ -259,33 +259,34 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
 ## Repository Structure
 
 ```
- project
- ┣ final_delivery/
- ┃ ┣ paper.pdf
- ┃ ┣ poster.pdf
- ┃ ┣ presentation.pdf
- ┃ ┗ report.pdf
- ┣ support_material/
- ┃ ┗ workshop1/
- ┣ workshops/
- ┃ ┣ workshop_1/
- ┃ ┣ workshop_2/
- ┃ ┣ workshop_3_management/
- ┃ ┗ workshop_4_simulation/
- ┃   ┣ code/
- ┃   ┣ ┣ cellular_automata.py
- ┃   ┃ ┣ simulation_1_discrete_event.py
- ┃   ┃ ┗ simulation_2_cellular_automata.py
- ┃   ┣ figures/
- ┃    ┣ figura1_escenarios.png
- ┃    ┣ figura2_dinamica_semanal.png
- ┃    ┣ figura3_analisis_caos.png
- ┃    ┣ figura4_mapa_ca.png
- ┃    ┣ figura5_dinamica_poblacional.png
- ┃    ┗ figura6_sensibilidad_ca.png
- ┃ 
- ┣ LICENSE
- ┗ README.md
+project/
+┣ code/
+┣ ┣ cellular_automata.py                     
+┣ final_delivery/            
+┃ ┣ paper.pdf
+┃ ┣ poster.pdf
+┃ ┣ presentation.pdf
+┃ ┗ report.pdf
+┣ support_material/
+┃ ┗ workshop1/
+┣ workshops/
+┃ ┣ workshop_1/
+┃ ┣ workshop_2/
+┃ ┣ workshop_3_management/
+┃ ┗ workshop_4_simulation/   
+┃   ┣ code/
+┃   ┃ ┣ cellular_automata.py
+┃   ┃ ┣ simulation_1_discrete_event.py
+┃   ┃ ┗ simulation_2_cellular_automata.py
+┃   ┗ figures/
+┃     ┣ figura1_escenarios.png
+┃     ┣ figura2_dinamica_semanal.png
+┃     ┣ figura3_analisis_caos.png
+┃     ┣ figura4_mapa_ca.png
+┃     ┣ figura5_dinamica_poblacional.png
+┃     ┗ figura6_sensibilidad_ca.png
+┣ LICENSE
+┗ README.md
 ```
 
 ### Running the Simulations
