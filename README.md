@@ -273,6 +273,7 @@ Models the spread and lifecycle of volunteer engagement across a 30×30 grid usi
  ┃ ┣ workshop_3_management/
  ┃ ┗ workshop_4_simulation/
  ┃   ┣ code/
+ ┃   ┣ ┣ cellular_automata.py
  ┃   ┃ ┣ simulation_1_discrete_event.py
  ┃   ┃ ┗ simulation_2_cellular_automata.py
  ┃   ┣ figures/
